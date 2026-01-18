@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smile Xpert - Smart Waiting Lounge Display</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- হেডার সেকশন -->
+        <header class="header">
+            <div class="clinic-info">
+                <div class="clinic-logo">
+                    <i class="fas fa-tooth"></i>
+                    <h1>স্মাইল এক্সপার্ট ডেন্টাল ক্লিনিক</h1>
+                </div>
+                <div class="datetime-section">
+                    <div class="datetime english">
+                        <h3>ইংরেজি তারিখ</h3>
+                        <p id="english-date">...</p>
+                        <p id="english-time">...</p>
+                    </div>
+                    <div class="datetime bengali">
+                        <h3>বাংলা তারিখ</h3>
+                        <p id="bengali-date">...</p>
+                    </div>
+                    <div class="datetime hijri">
+                        <h3>হিজরি তারিখ</h3>
+                        <p id="hijri-date">...</p>
+                    </div>
+                    <div class="weather-widget">
+                        <i class="wi wi-day-sunny" id="weather-icon"></i>
+                        <div class="weather-info">
+                            <span id="temperature">--°C</span>
+                            <span id="weather-desc">লোড হচ্ছে...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- জরুরি বার্তা -->
+        <div class="emergency-alert hidden" id="emergency-alert">
+            <div class="emergency-content">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h2 id="emergency-text">জরুরি বার্তা</h2>
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+        </div>
+
+        <!-- মূল কন্টেন্ট -->
+        <main class="main-content">
+            <!-- বাম কলাম: ডাক্তার তালিকা -->
+            <div class="column doctors-column">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-md"></i> আজকের ডাক্তারগণ</h2>
+                </div>
+                <div class="doctors-list" id="doctors-list">
+                    <!-- ডাইনামিকভাবে লোড হবে -->
+                </div>
+            </div>
+
+            <!-- মধ্য কলাম: চলমান চিকিৎসা -->
+            <div class="column current-treatment-column">
+                <div class="section-header">
+                    <h2><i class="fas fa-procedures"></i> চলমান চিকিৎসা</h2>
+                </div>
+                <div class="current-treatment-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>রোগীর নাম</th>
+                                <th>আইডি</th>
+                                <th>ইউনিট নম্বর</th>
+                                <th>ডাক্তারের নাম</th>
+                            </tr>
+                        </thead>
+                        <tbody id="treatment-table">
+                            <!-- ডাইনামিকভাবে লোড হবে -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- ছবি স্লাইডার -->
+                <div class="image-slider-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-images"></i> আমাদের সেবাসমূহ</h2>
+                    </div>
+                    <div class="image-slider">
+                        <div class="slider-container" id="slider-container">
+                            <!-- স্লাইডার ইমেজ ডাইনামিকভাবে লোড হবে -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ডান কলাম: অপেক্ষমাণ তালিকা -->
+            <div class="column waiting-column">
+                <div class="section-header">
+                    <h2><i class="fas fa-clock"></i> অপেক্ষমাণ রোগী</h2>
+                </div>
+                <div class="waiting-list-container">
+                    <div class="waiting-list" id="waiting-list">
+                        <!-- ডাইনামিকভাবে লোড হবে -->
+                    </div>
+                </div>
+                
+                <!-- টোকেন কলিং সেকশন -->
+                <div class="token-calling-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-bullhorn"></i> বর্তমান কল</h2>
+                    </div>
+                    <div class="current-call" id="current-call">
+                        <div class="call-display">
+                            <div class="token-number">টোকেন: <span id="current-token">--</span></div>
+                            <div class="patient-name">রোগী: <span id="current-patient">কোন রোগী নেই</span></div>
+                            <div class="room-number">রুম: <span id="current-room">--</span></div>
+                        </div>
+                        <button class="call-btn" id="repeat-call-btn">
+                            <i class="fas fa-redo-alt"></i> কল পুনরাবৃত্তি করুন
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- নোটিশ বার -->
+        <footer class="footer">
+            <div class="notice-bar">
+                <span class="notice-label"><i class="fas fa-info-circle"></i> নোটিশ:</span>
+                <div class="notice-content" id="notice-content">
+                    <!-- ডাইনামিক নোটিশ লোড হবে -->
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Audio Element for Announcements -->
+    <audio id="announcement-audio" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
